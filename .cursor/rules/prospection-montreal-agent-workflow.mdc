@@ -1,0 +1,32 @@
+---
+description: When enriching prospection-montreal buildings, run the automated list-then-add workflow from that folder.
+globs: prospection-montreal/**/*
+---
+
+# Prospection Montréal — workflow agent
+
+When the user asks to find missing buildings, enrich inventory, or sync prospecting data for **prospection-montreal**:
+
+1. Use the project root `prospection-montreal/` (not the parent `alarme-incendie` soumissions site).
+2. For the full **open-data + Wikipedia** pipeline with merge into `data.json`:
+
+```bash
+cd prospection-montreal
+npm run agents:execute-plan
+```
+
+   Optional: drop CSV files in `in/manual/` (see `agents/sources/SOURCES.md`); run `npm run agents:ingest:manual` first or rely on `agents:execute-plan` which ingests when CSVs exist.
+3. Outputs to inspect:
+   - `prospection-montreal/agents/out/missing-buildings.json` — list before merge
+   - `prospection-montreal/agents/out/workflow-report.json` or `pipeline-report.json`
+4. To publish the site after merge:
+
+```bash
+cd prospection-montreal
+npm run agents:execute-plan:deploy
+```
+
+   (or `npm run agents:workflow:deploy` — `agents:workflow` = discover+enrich+merge without the optional `pipeline-open-data` wrapper)
+5. To push all proposed rows to **Supabase** (service role in `.env`): `npm run agents:apply:all` then `npm run agents:sync-local`.
+
+5. Supabase push (`npm run agents:apply`) still requires `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env`; do not invent credentials.

@@ -1,0 +1,26 @@
+{
+  "ui": {
+    "showMemoryUsage": true,
+    "showLineNumbers": true,
+    "showCitations": true
+  },
+  "tools": {
+    "sandboxNetworkAccess": true,
+    "disableLLMCorrection": false
+  },
+  "security": {
+    "enablePermanentToolApproval": true,
+    "environmentVariableRedaction": {
+      "enabled": true
+    }
+  },
+  "experimental": {
+    "worktrees": true,
+    "modelSteering": true,
+    "directWebFetch": true,
+    "memoryManager": true,
+    "generalistProfile": true,
+    "contextManagement": true,
+    "topicUpdateNarration": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "alarm-incendie-prospection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "setup_db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "agents:discover": "node agents/discover_wikidata.js",
+    "agents:discover:opendata": "node agents/discover_opendata.js",
+    "agents:enrich": "node agents/enrich_missing.js",
+    "agents:run": "node agents/run_pipeline.js",
+    "agents:review": "node agents/build_review_queue.js",
+    "agents:apply": "node agents/apply-approved.js",
+    "agents:merge-local": "node agents/merge-approved-local.js",
+    "agents:sync-local": "node agents/sync-data-json-from-supabase.js",
+    "agents:workflow": "node agents/workflow-list-and-add.js",
+    "agents:workflow:deploy": "node agents/workflow-list-and-add.js --deploy",
+    "agents:ingest:manual": "node agents/manual-csv.js",
+    "agents:pipeline": "node agents/pipeline-open-data.js",
+    "agents:execute-plan": "node agents/pipeline-open-data.js --merge",
+    "agents:execute-plan:deploy": "node agents/pipeline-open-data.js --merge --deploy",
+    "agents:apply:all": "node agents/apply-all-proposed.js",
+    "deploy:netlify": "netlify deploy --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.104.0",
+    "dotenv": "^17.4.2",
+    "pg": "^8.20.0",
+    "sqlite3": "^6.0.1",
+    "ws": "^8.20.0"
+  }
+}

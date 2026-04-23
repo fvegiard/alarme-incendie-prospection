@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lena AI | Suivi des Soumissions — DRÉlectrique</title>
+    <meta name="description" content="Tableau de bord de suivi des soumissions — DRÉlectrique 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sentinel-overlay"></div>
+    <div class="dashboard-container">
+
+        <!-- ── Sidebar ─────────────────────────────────────────────── -->
+        <nav class="sidebar glass" id="sidebar">
+            <div class="logo">
+                <span class="logo-accent">Lena</span> AI
+                <div class="logo-sub">DRÉlectrique 2026</div>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li data-tab="prospection" id="nav-prospection" onclick="window.location.href='../screen_prospection/index.html'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    Prospection
+                </li>
+                <li class="active" data-tab="soumissions" id="nav-soumissions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                    Soumissions
+                </li>
+                <li data-tab="mo" id="nav-mo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                    Main d'Œuvre
+                </li>
+                <li data-tab="analyse" id="nav-analyse">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Analyse IA
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <div class="pulse"></div>
+                    <span>Système Live · n8n v3</span>
+                </div>
+                <div class="last-sync" id="lastSync">Sync: --:--</div>
+            </div>
+        </nav>
+
+        <!-- ── Main Content ───────────────────────────────────────── -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h1 class="page-title">Tableau Suivi des Soumissions</h1>
+                    <div class="breadcrumb">Tableau de bord · <span class="breadcrumb-active">Soumissions</span></div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box glass" id="searchBox">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <input type="text" id="searchInput" placeholder="Chercher soumission, projet, client…" autocomplete="off">
+                    </div>
+                    <button class="btn-icon glass" id="exportBtn" title="Exporter CSV">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </button>
+                    <div class="user-profile">
+                        <div class="avatar glass">LI</div>
+                        <div class="user-info">
+                            <span class="user-name">Lena Intelligence</span>
+                            <span class="user-role">IA · Lead</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KPI Strip -->
+            <section class="kpi-grid" id="kpiGrid">
+                <div class="kpi-card glass animate-slide-up delay-1" id="kpi-projets">
+                    <div class="kpi-icon kpi-blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="kpi-body">
+                        <label>SOUMISSIONS ACTIVES</label>
+                        <div class="value" id="kv-soumissions">12</div>
+                        <div class="trend positive">↑ +5 cette semaine</div>
+                    </div>
+                </div>
+                <div class="kpi-card glass animate-slide-up delay-2" id="kpi-mo">
+                    <div class="kpi-icon kpi-orange">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                    </div>
+                    <div class="kpi-body">
+                        <label>TOTAL VALEUR QUOTÉE</label>
+                        <div class="value" id="kv-valeur">$1.8M</div>
+                        <div class="trend neutral">Stable</div>
+                    </div>
+                </div>
+                <div class="kpi-card glass animate-slide-up delay-3" id="kpi-succes">
+                    <div class="kpi-icon kpi-cyan">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="kpi-body">
+                        <label>TAUX DE RÉUSSITE</label>
+                        <div class="value" id="kv-taux">24%</div>
+                        <div class="trend positive">↑ +2.1%</div>
+                    </div>
+                </div>
+                <div class="kpi-card glass animate-slide-up delay-4" id="kpi-addenda">
+                    <div class="kpi-icon kpi-red">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="kpi-body">
+                        <label>ADDENDA EN ATTENTE</label>
+                        <div class="value" id="kv-addenda">8</div>
+                        <div class="trend negative">↑ Urgent</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Toolbar -->
+            <div class="table-toolbar glass animate-fade-in">
+                <div class="filter-row">
+                    <span class="filter-label">Statut :</span>
+                    <button class="filter-chip active" data-filter="all" id="filter-all">Tous</button>
+                    <button class="filter-chip" data-filter="soumis" id="filter-soumis">Soumis</button>
+                    <button class="filter-chip" data-filter="nc" id="filter-nc">NC / DD</button>
+                    <button class="filter-chip" data-filter="gagne" id="filter-gagne">Gagné</button>
+                    <button class="filter-chip" data-filter="perdu" id="filter-perdu">Perdu</button>
+                </div>
+                <div class="filter-row-right">
+                    <span class="records-count" id="recordsCount">-- soumissions</span>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <section class="table-section animate-fade-in" id="tableSection">
+                <div class="table-wrapper" id="tableWrapper">
+                    <table class="data-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th class="th-num sortable" data-col="numero">
+                                    N° Soumission <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-projet sortable" data-col="projet">
+                                    Client / Projet <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-resp sortable" data-col="responsable">
+                                    Resp. Soumission <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-addenda sortable" data-col="addenda">
+                                    Addenda <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-mo sortable" data-col="mo">
+                                    Estim. Heures M.O. <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-valeur sortable" data-col="valeur">
+                                    Valeur ($) <span class="sort-icon">⇅</span>
+                                </th>
+                                <th class="th-statut">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Injected by script.js -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span id="footerCount">Affichage de -- soumissions</span>
+                    <div class="pagination" id="pagination"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
