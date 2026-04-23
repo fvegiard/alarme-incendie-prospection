@@ -932,8 +932,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="side-box">
           <h3>Accès direct</h3>
           <ul>
-            <li><a href='/#mapPanel'>Aller à la carte interactive</a></li>
-            <li><a href='/#detailPanel'>Aller à la fiche contact / administration</a></li>
+            <li><a href='#mapPanel'>Aller à la carte interactive</a></li>
+            <li><a href='#detailPanel'>Aller à la fiche contact / administration</a></li>
             <li>Le fichier n’embarque pas les téléphones et courriels des gestionnaires; la fiche sélectionnée donne les liens rapides pour les retrouver.</li>
           </ul>
         </div>
@@ -1056,7 +1056,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="map-action-row">
           <a class="ghost-btn" id="selectedMapLink" target="_blank" rel="noreferrer">Ouvrir l’immeuble sélectionné dans Google Maps</a>
           <a class="ghost-btn" id="selectedOsmLink" target="_blank" rel="noreferrer">Ouvrir l’immeuble sélectionné dans OpenStreetMap</a>
-          <a class='ghost-btn' href='/#detailPanel'>Voir le contact / gestionnaire</a>
+          <a class='ghost-btn' href='#detailPanel'>Voir le contact / gestionnaire</a>
         </div>
         <div class="legend">
           <div class="legend-item"><span class="dot" style="background:var(--red)"></span>Très élevée</div>
@@ -1816,15 +1816,15 @@ let DATA = null;
             <div class="facts contact-grid">
               <div class="fact"><div class="k">Canal prioritaire</div><div class="v">${escapeHtml(getContactChannel(record))}</div></div>
               <div class="fact"><div class="k">Coordonnées à récupérer</div><div class="v">${escapeHtml(getContactChecklist(record))}</div></div>
-              <div class="fact"><div class="k">Carte</div><div class="v"><a href="https://prospection-montreal.netlify.app/${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Ouvrir dans Google Maps</a></div></div>
-              <div class="fact"><div class="k">Recherche web</div><div class="v"><a href="https://prospection-montreal.netlify.app/${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire / téléphone</a></div></div>
+              <div class="fact"><div class="k">Carte</div><div class="v"><a href="${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Ouvrir dans Google Maps</a></div></div>
+              <div class="fact"><div class="k">Recherche web</div><div class="v"><a href="${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire / téléphone</a></div></div>
             </div>
             <div class="contact-actions">
-              <a class="button" href="https://prospection-montreal.netlify.app/${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Google Maps</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildOsmUrl(record))}" target="_blank" rel="noreferrer">OpenStreetMap</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Rôle foncier</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildMailToUrl(record))}">Préparer un courriel</a>
+              <a class="button" href="${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Google Maps</a>
+              <a class="ghost-btn" href="${escapeHtml(buildOsmUrl(record))}" target="_blank" rel="noreferrer">OpenStreetMap</a>
+              <a class="ghost-btn" href="${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Rôle foncier</a>
+              <a class="ghost-btn" href="${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire</a>
+              <a class="ghost-btn" href="${escapeHtml(buildMailToUrl(record))}">Préparer un courriel</a>
             </div>
             <ol class="contact-steps small">
               <li>Ouvre la carte ou Google Maps pour retrouver le standard, la réception ou le site officiel de l’immeuble.</li>
@@ -1835,9 +1835,9 @@ let DATA = null;
               Le dashboard identifie le décideur probable, mais il ne contient pas directement les numéros de téléphone ni les courriels. Les boutons ci-dessus servent à retrouver rapidement l’administrateur ou le gestionnaire réel.
             </div>
             <div style="margin-top:14px;line-height:1.6">
-              <div><strong>Inventaire des tours:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_inventaire)}" target="_blank" rel="noreferrer">source inventaire</a></div>
-              <div><strong>Cadre RBQ:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_rbq)}" target="_blank" rel="noreferrer">source RBQ</a></div>
-              <div><strong>Recherche propriétaire:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Evalweb / rôle foncier</a></div>
+              <div><strong>Inventaire des tours:</strong> <a href="${escapeHtml(record.source_inventaire)}" target="_blank" rel="noreferrer">source inventaire</a></div>
+              <div><strong>Cadre RBQ:</strong> <a href="${escapeHtml(record.source_rbq)}" target="_blank" rel="noreferrer">source RBQ</a></div>
+              <div><strong>Recherche propriétaire:</strong> <a href="${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Evalweb / rôle foncier</a></div>
             </div>
             <div style="margin-top:14px;line-height:1.55">
               <strong>Prochaine action suggérée:</strong><br/>
@@ -1950,8 +1950,8 @@ let DATA = null;
           <div class="small" style="line-height:1.55"><strong>Constat:</strong> ${escapeHtml(source.constat)}</div>
           <div class="small" style="line-height:1.55;margin-top:8px"><strong>Implication commerciale:</strong> ${escapeHtml(source.implication_commerciale)}</div>
           <div class="small" style="line-height:1.6;margin-top:10px">
-            ${source.source_1 ? `<a href="https://prospection-montreal.netlify.app/${escapeHtml(source.source_1)}" target="_blank" rel="noreferrer">Source 1</a>` : ""}
-            ${source.source_2 ? `${source.source_1 ? " · " : ""}<a href="https://prospection-montreal.netlify.app/${escapeHtml(source.source_2)}" target="_blank" rel="noreferrer">Source 2</a>` : ""}
+            ${source.source_1 ? `<a href="${escapeHtml(source.source_1)}" target="_blank" rel="noreferrer">Source 1</a>` : ""}
+            ${source.source_2 ? `${source.source_1 ? " · " : ""}<a href="${escapeHtml(source.source_2)}" target="_blank" rel="noreferrer">Source 2</a>` : ""}
           </div>
           ${source.note ? `<div class="small muted" style="margin-top:8px">${escapeHtml(source.note)}</div>` : ""}
         </div>
@@ -2010,15 +2010,15 @@ let DATA = null;
             <div class="facts contact-grid">
               <div class="fact"><div class="k">Canal prioritaire</div><div class="v">${escapeHtml(getContactChannel(record))}</div></div>
               <div class="fact"><div class="k">Coordonnées à récupérer</div><div class="v">${escapeHtml(getContactChecklist(record))}</div></div>
-              <div class="fact"><div class="k">Carte</div><div class="v"><a href="https://prospection-montreal.netlify.app/${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Ouvrir dans Google Maps</a></div></div>
-              <div class="fact"><div class="k">Recherche web</div><div class="v"><a href="https://prospection-montreal.netlify.app/${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire / téléphone</a></div></div>
+              <div class="fact"><div class="k">Carte</div><div class="v"><a href="${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Ouvrir dans Google Maps</a></div></div>
+              <div class="fact"><div class="k">Recherche web</div><div class="v"><a href="${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire / téléphone</a></div></div>
             </div>
             <div class="contact-actions">
-              <a class="button" href="https://prospection-montreal.netlify.app/${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Google Maps</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildOsmUrl(record))}" target="_blank" rel="noreferrer">OpenStreetMap</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Rôle foncier</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire</a>
-              <a class="ghost-btn" href="https://prospection-montreal.netlify.app/${escapeHtml(buildMailToUrl(record))}">Préparer un courriel</a>
+              <a class="button" href="${escapeHtml(buildGoogleMapsUrl(record))}" target="_blank" rel="noreferrer">Google Maps</a>
+              <a class="ghost-btn" href="${escapeHtml(buildOsmUrl(record))}" target="_blank" rel="noreferrer">OpenStreetMap</a>
+              <a class="ghost-btn" href="${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Rôle foncier</a>
+              <a class="ghost-btn" href="${escapeHtml(buildManagerSearchUrl(record))}" target="_blank" rel="noreferrer">Chercher le gestionnaire</a>
+              <a class="ghost-btn" href="${escapeHtml(buildMailToUrl(record))}">Préparer un courriel</a>
             </div>
             <ol class="contact-steps small">
               <li>Ouvre la carte ou Google Maps pour retrouver le standard, la réception ou le site officiel de l’immeuble.</li>
@@ -2029,9 +2029,9 @@ let DATA = null;
               Le dashboard identifie le décideur probable, mais il ne contient pas directement les numéros de téléphone ni les courriels. Les boutons ci-dessus servent à retrouver rapidement l’administrateur ou le gestionnaire réel.
             </div>
             <div style="margin-top:14px;line-height:1.6">
-              <div><strong>Inventaire des tours:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_inventaire)}" target="_blank" rel="noreferrer">source inventaire</a></div>
-              <div><strong>Cadre RBQ:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_rbq)}" target="_blank" rel="noreferrer">source RBQ</a></div>
-              <div><strong>Recherche propriétaire:</strong> <a href="https://prospection-montreal.netlify.app/${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Evalweb / rôle foncier</a></div>
+              <div><strong>Inventaire des tours:</strong> <a href="${escapeHtml(record.source_inventaire)}" target="_blank" rel="noreferrer">source inventaire</a></div>
+              <div><strong>Cadre RBQ:</strong> <a href="${escapeHtml(record.source_rbq)}" target="_blank" rel="noreferrer">source RBQ</a></div>
+              <div><strong>Recherche propriétaire:</strong> <a href="${escapeHtml(record.source_proprietaires)}" target="_blank" rel="noreferrer">Evalweb / rôle foncier</a></div>
             </div>
             <div style="margin-top:14px;line-height:1.55">
               <strong>Prochaine action suggérée:</strong><br/>
@@ -2144,8 +2144,8 @@ let DATA = null;
           <div class="small" style="line-height:1.55"><strong>Constat:</strong> ${escapeHtml(source.constat)}</div>
           <div class="small" style="line-height:1.55;margin-top:8px"><strong>Implication commerciale:</strong> ${escapeHtml(source.implication_commerciale)}</div>
           <div class="small" style="line-height:1.6;margin-top:10px">
-            ${source.source_1 ? `<a href="https://prospection-montreal.netlify.app/${escapeHtml(source.source_1)}" target="_blank" rel="noreferrer">Source 1</a>` : ""}
-            ${source.source_2 ? `${source.source_1 ? " · " : ""}<a href="https://prospection-montreal.netlify.app/${escapeHtml(source.source_2)}" target="_blank" rel="noreferrer">Source 2</a>` : ""}
+            ${source.source_1 ? `<a href="${escapeHtml(source.source_1)}" target="_blank" rel="noreferrer">Source 1</a>` : ""}
+            ${source.source_2 ? `${source.source_1 ? " · " : ""}<a href="${escapeHtml(source.source_2)}" target="_blank" rel="noreferrer">Source 2</a>` : ""}
           </div>
           ${source.note ? `<div class="small muted" style="margin-top:8px">${escapeHtml(source.note)}</div>` : ""}
         </div>
